@@ -120,20 +120,21 @@ function convert() {
     let tempEnglish = '';
 
     for (let char of text) {
-        if (/[\u4e00-\u9fff]/.test(char)) {
+        if (/[\u4e00-\u9fff]/.test(char)) { // 中文字
             if (tempEnglish) {
                 resultParts.push(tempEnglish.toLowerCase());
                 tempEnglish = '';
             }
             const pinyin = pinyinPro.pinyin(char, { toneType: 'none' });
             resultParts.push(pinyin.toLowerCase());
-        } else if (/[a-zA-Z]/.test(char)) {
+        } else if (/[a-zA-Z0-9]/.test(char)) { // ✅ 英文或數字，都累積起來
             tempEnglish += char;
-        } else {
+        } else { 
             if (tempEnglish) {
                 resultParts.push(tempEnglish.toLowerCase());
                 tempEnglish = '';
             }
+            // 其他符號一樣忽略
         }
     }
     if (tempEnglish) {
@@ -163,6 +164,7 @@ function convert() {
       </div>
     `;
 }
+
 
 function copyText(spanId, btnElement) {
     const text = document.getElementById(spanId).innerText;
