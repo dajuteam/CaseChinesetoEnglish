@@ -104,7 +104,7 @@
 <body>
 
 <div class="container">
-  <h2>案件中文轉換程式全能版 by Xcrab</h2>
+  <h2>案件中文轉換程式全能版 v1.02 by Xcrab</h2>
 
   <input type="text" id="inputText" placeholder="請輸入中文或中英混合內容">
   <br>
@@ -148,17 +148,17 @@ function convert() {
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `
       <div class="result-item">
-        <span class="result-label">網頁網址用：</span>
+        <span class="result-label">網頁網址用(網頁)：</span>
         <span id="text1" class="result-text hyphen-style">${hyphenResult}</span>
         <button class="copy-btn" onclick="copyText('text1', this)">複製</button><span class="copied-tip">已複製</span>
       </div>
       <div class="result-item">
-        <span class="result-label">網頁資料夾用：</span>
+        <span class="result-label">網頁圖片資料夾用(網頁)：</span>
         <span id="text2" class="result-text camel-style">${camelCaseResult}</span>
         <button class="copy-btn" onclick="copyText('text2', this)">複製</button><span class="copied-tip">已複製</span>
       </div>
       <div class="result-item">
-        <span class="result-label">中文案名用：</span>
+        <span class="result-label">放在上網資料夾用(本機)：</span>
         <span id="text3" class="result-text chinese-style">${chineseNameResult}</span>
         <button class="copy-btn" onclick="copyText('text3', this)">複製</button><span class="copied-tip">已複製</span>
       </div>
