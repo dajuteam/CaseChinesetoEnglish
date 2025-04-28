@@ -114,27 +114,27 @@
 </div>
 
 <script>
+// 主轉換程式
 function convert() {
     const text = document.getElementById('inputText').value.trim();
     let resultParts = [];
     let tempEnglish = '';
 
     for (let char of text) {
-        if (/[\u4e00-\u9fff]/.test(char)) { // 中文字
+        if (/[\u4e00-\u9fff]/.test(char)) {
             if (tempEnglish) {
                 resultParts.push(tempEnglish.toLowerCase());
                 tempEnglish = '';
             }
             const pinyin = pinyinPro.pinyin(char, { toneType: 'none' });
             resultParts.push(pinyin.toLowerCase());
-        } else if (/[a-zA-Z0-9]/.test(char)) { // ✅ 英文或數字，都累積起來
+        } else if (/[a-zA-Z0-9]/.test(char)) {
             tempEnglish += char;
-        } else { 
+        } else {
             if (tempEnglish) {
                 resultParts.push(tempEnglish.toLowerCase());
                 tempEnglish = '';
             }
-            // 其他符號一樣忽略
         }
     }
     if (tempEnglish) {
@@ -165,7 +165,7 @@ function convert() {
     `;
 }
 
-
+// 複製功能
 function copyText(spanId, btnElement) {
     const text = document.getElementById(spanId).innerText;
     navigator.clipboard.writeText(text).then(() => {
@@ -176,7 +176,16 @@ function copyText(spanId, btnElement) {
         }, 1500);
     });
 }
+
+// 🔥 這段是新加的：讓「輸入框」按Enter也能觸發轉換
+document.getElementById('inputText').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // 避免Enter時頁面跳動
+        convert();
+    }
+});
 </script>
+
 
 </body>
 </html>
